@@ -33,21 +33,8 @@
 #include <tvm/ffi/reflection/registry.h>
 #include <tvm/runtime/logging.h>
 
-#include "src/runtime/contrib/sort/sort.cc"
-#include "src/runtime/cpu_device_api.cc"
-#include "src/runtime/device_api.cc"
-#include "src/runtime/file_utils.cc"
-#include "src/runtime/logging.cc"
-#include "src/runtime/profiling.cc"
-#include "src/runtime/rpc/rpc_channel.cc"
-#include "src/runtime/rpc/rpc_endpoint.cc"
-#include "src/runtime/rpc/rpc_event_impl.cc"
-#include "src/runtime/rpc/rpc_local_session.cc"
-#include "src/runtime/rpc/rpc_module.cc"
-#include "src/runtime/rpc/rpc_session.cc"
-#include "src/runtime/tensor.cc"
-#include "src/runtime/workspace_pool.cc"
-// relax setup
+// Bring up tvm-ffi globals first so reflected __ffi_init__ constructors
+// can resolve ffi.GetKwargsObject and related helpers during static init.
 #include "3rdparty/tvm-ffi/src/ffi/backtrace.cc"
 #include "3rdparty/tvm-ffi/src/ffi/container.cc"
 #include "3rdparty/tvm-ffi/src/ffi/dtype.cc"
@@ -63,6 +50,21 @@
 #include "3rdparty/tvm-ffi/src/ffi/object.cc"
 #include "3rdparty/tvm-ffi/src/ffi/tensor.cc"
 #include "3rdparty/tvm-ffi/src/ffi/testing/testing.cc"
+
+#include "src/runtime/contrib/sort/sort.cc"
+#include "src/runtime/cpu_device_api.cc"
+#include "src/runtime/device_api.cc"
+#include "src/runtime/file_utils.cc"
+#include "src/runtime/logging.cc"
+#include "src/runtime/profiling.cc"
+#include "src/runtime/rpc/rpc_channel.cc"
+#include "src/runtime/rpc/rpc_endpoint.cc"
+#include "src/runtime/rpc/rpc_event_impl.cc"
+#include "src/runtime/rpc/rpc_local_session.cc"
+#include "src/runtime/rpc/rpc_module.cc"
+#include "src/runtime/rpc/rpc_session.cc"
+#include "src/runtime/tensor.cc"
+#include "src/runtime/workspace_pool.cc"
 #include "src/runtime/memory/memory_manager.cc"
 #include "src/runtime/nvtx.cc"
 #include "src/runtime/vm/attn_backend.cc"
